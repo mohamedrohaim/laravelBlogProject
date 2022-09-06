@@ -22,9 +22,7 @@
             @auth
             <li><a href="#">{{auth()->user()->name}}</a></li>
             <img src="{{asset(auth()->user()->image)}}" class="" alt="Cinque Terre" width="50" height="50">
-
             @endauth
-
           </ul>
         </div>
       </nav><br>

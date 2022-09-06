@@ -48,6 +48,14 @@
           <ul class="nav navbar-nav navbar-right">
 
             @auth
+            @if (session('success'))
+    <div class="alert alert-success alert-dismissible show">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+          @endif
             <li><a href="{{route('users.show',auth()->user())}}"><span class="glyphicon glyphicon-user"></span> profile</a></li>
 
             <li><a href="#">{{auth()->user()->name}}</a></li>
@@ -66,7 +74,7 @@
       <div >
 
         @yield('body')
-        
+
 
 
 

@@ -27,17 +27,13 @@ class BlogController extends Controller
      */
     public function create(Request $request)
     {
-
-
-
         $inputs=$request->except('_token');
-
         if($request->hasFile('image')){
             $inputs['image']=Storage::disk('public')->put('files',$request->file('image'));
 
         }
         Blog::Query()->create($inputs);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success','blog added successfully');;
 
        /*$input=$request;
 
@@ -103,6 +99,6 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+
     }
 }

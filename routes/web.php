@@ -42,6 +42,5 @@ Route::get('/home', function () {
 
     return view('blog.home.index');
 })->name('home');
-
 Route::resource('users', UserController::class);
 Route::post('update/{id}','UserController@update');

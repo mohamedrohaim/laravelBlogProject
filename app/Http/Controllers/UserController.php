@@ -41,7 +41,6 @@ class UserController extends Controller
     }
     public function getLogout() {
         \auth()->logout();
-
         return redirect()->route('home');
     }
 
@@ -67,7 +66,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -120,14 +119,12 @@ class UserController extends Controller
     public function update(Request $request,User $user)
     {
         $input=$request->except('_token','_method');
-        if ($request->get('password') !='same') {
-           $input['password']=Hash::make( $input['password']);
-        }
+        $input['password']=Hash::make($input['password']);
         if ($request->hasFile('image')) {
             $input['image']=Storage::disk('public')->put('files',$request->file('image'));
         }
         $user->update($input);
-        return redirect()->route('home');
+        return redirect()->route('home')->with('success','user updateded success');
         //
     }
 
@@ -144,10 +141,9 @@ class UserController extends Controller
         return redirect()->route('showUsers')->with('success','user addeletedded successfully');
       }
 
-      public function permition(User $user)
+      public function EditPermition(User $user)
     {
         $input=$request->except('_token','_method');
-
         $user->update($input);
         return redirect()->route('showUsers');
         //
