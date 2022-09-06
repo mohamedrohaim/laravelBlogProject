@@ -120,9 +120,8 @@ class UserController extends Controller
     public function update(Request $request,User $user)
     {
         $input=$request->except('_token','_method');
-        if ($request->get('password') !='same') {
-           $input['password']=Hash::make( $input['password']);
-        }
+       $input['password']=Hash::make( $input['password']);
+       
         if ($request->hasFile('image')) {
             $input['image']=Storage::disk('public')->put('files',$request->file('image'));
         }
